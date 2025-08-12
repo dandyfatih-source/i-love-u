@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Untuk Wawa — Full Heart Text</title>
+<style>
+:root{
+  --bg1:#ffdfe8;
+  --accent:#ff2a6d;
+  --accent-2:#ff78a8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg,var(--bg1),#fff0f6 140%);
+  overflow:hidden;
+  color:#333;
+}
+
+/* Slides */
+.slide{display:none;height:100vh;width:100%;align-items:center;justify-content:center;flex-direction:column;padding:24px;gap:18px;position:relative}
+.slide.active{display:flex}
+
+/* Shared box */
+.box{
+  background: rgba(255,255,255,0.9);
+  padding:22px 26px;
+  border-radius:16px;
+  max-width:900px;
+  width:min(96%,760px);
+  text-align:center;
+  box-shadow:0 12px 36px rgba(216,27,96,0.12);
+}
+
+/* Button */
+.btn{
+  margin-top:14px;padding:10px 20px;border:0;border-radius:12px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 22px rgba(255,77,136,0.18)
+}
+.btn:hover{transform:translateY(-3px)}
+
+/* WAWA */
+.name-wawa{display:flex;gap:12px;justify-content:center;align-items:center;font-size:60px;font-weight:800;margin:8px 0 6px}
+.name-wawa .letter{color:var(--accent);text-shadow:0 0 10px rgba(255,255,255,0.9);animation:letterGlow 1.4s ease-in-out infinite}
+.name-wawa .letter:nth-child(1){animation-delay:0}s
+.name-wawa .letter:nth-child(2){animation-delay:.25s}
+.name-wawa .letter:nth-child(3){animation-delay:.5s}
+.name-wawa .letter:nth-child(4){animation-delay:.75s}
+@keyframes letterGlow{
+  0%{color:var(--accent);text-shadow:0 0 8px rgba(255,255,255,0.9)}
+  50%{color:#fff;text-shadow:0 0 24px #ff78a8, 0 0 40px #ff2a6d; transform:translateY(-6px)}
+  100%{color:var(--accent);text-shadow:0 0 8px rgba(255,255,255,0.9)}
+}
+
+/* Falling emojis */
+.falling{position:fixed;top:-60px;left:0;font-size:28px;pointer-events:none;animation:fall linear forwards;z-index:4}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+
+/* SVG heart container */
+.heart-wrap{display:flex;justify-content:center;margin-top:12px;z-index:10;pointer-events:none;}
+.heart-svg{width:420px;max-width:86vw;height:auto;filter:drop-shadow(0 8px 26px rgba(216,27,96,0.12))}
+
+/* Text styles inside SVG handled by SVG classes */
+
+/* Responsive */
+@media (max-width:480px){
+  .name-wawa{font-size:40px;gap:8px}
+  .heart-svg{width:300px}
+  .box{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div id="slide1" class="slide active">
+  <div class="box">
+    <h1 style="margin:0;color:#d81b60">Hai, Sayang ❤️</h1>
+    <p style="margin:10px 0 0 0">Aku Ada Hadiah Kecil Buat Kamu</p>
+    <button class="btn" onclick="nextSlide()">Pencet Disini</button>
+  </div>
+</div>
+
+<!-- SLIDE 2 -->
+<div id="slide2" class="slide">
+  <div class="box">
+    <p style="margin:0;line-height:1.6;font-size:1.05rem;color:#444">
+      Terima Kasih Sudah Mau Menemaniku Selama Ini ❤️<br>
+      Maaf Kalau Belum Bisa Jadi Yang Terbaik Buat Kamu.<br>
+      Aku Seneng Banget Punya Kamu Buat Jadi Pacar Aku..<br>
+      I'm Really Happy Wawa 💕<br>
+      Thank you, I love you so much 💖
+    </p>
+    <button class="btn" onclick="nextSlide()">Lanjut</button>
+  </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div id="slide3" class="slide">
+  <div class="box" style="position:relative;z-index:12">
+    <div class="name-wawa" aria-hidden="true">
+      <span class="letter" style="animation-delay:0s">W</span>
+      <span class="letter" style="animation-delay:0.25s">A</span>
+      <span class="letter" style="animation-delay:0.5s">W</span>
+      <span class="letter" style="animation-delay:0.75s">A</span>
+    </div>
+
+    <!-- SVG heart with textPath filling the whole heart outline; glow path animates along the outline -->
+    <div class="heart-wrap" aria-hidden="true">
+      <svg class="heart-svg" viewBox="0 0 600 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="I love you heart">
+        <defs>
+          <!-- Full symmetrical heart path centered -->
+          <path id="fullHeart" d="
+            M300,520
+            C300,520 40,380 110,215
+            C160,120 300,150 300,240
+            C300,150 440,120 490,215
+            C560,380 300,520 300,520 Z
+          "/>
+
+          <!-- Glow filter for path -->
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          <!-- gradient for animated stroke -->
+          <linearGradient id="strokeGrad" x1="0%" x2="100%">
+            <stop offset="0%" stop-color="#ff9fbf"/>
+            <stop offset="50%" stop-color="#ff2a6d"/>
+            <stop offset="100%" stop-color="#ff78a8"/>
+          </linearGradient>
+        </defs>
+
+        <!-- subtle faint outline of heart -->
+        <use href="#fullHeart" fill="none" stroke="rgba(255,100,150,0.12)" stroke-width="6"/>
+
+        <!-- animated glowing stroke that travels along the heart path -->
+        <use href="#fullHeart" fill="none" stroke="url(#strokeGrad)" stroke-width="8"
+             stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10 6" filter="url(#glow)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-400" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="6s" repeatCount="indefinite"/>
+        </use>
+
+        <!-- Primary text along the path (solid) -->
+        <text font-family="Poppins, Arial, sans-serif" font-weight="700" font-size="16" fill="#ff2a6d">
+          <textPath href="#fullHeart" startOffset="0">
+            I LOVE YOU • I LOVE YOU • I LOVE YOU • I LOVE YOU • I LOVE YOU • I LOVE YOU •
+          </textPath>
+        </text>
+
+        <!-- Blurred duplicate for glow effect of the text -->
+        <text font-family="Poppins, Arial, sans-serif" font-weight="700" font-size="16" fill="#ff92b3" opacity="0.9" filter="url(#glow)">
+          <textPath href="#fullHeart" startOffset="0">
+            I LOVE YOU • I LOVE YOU • I LOVE YOU • I LOVE YOU • I LOVE YOU • I LOVE YOU •
+          </textPath>
+        </text>
+
+      </svg>
+    </div>
+
+    <!-- visible fallback/supplement -->
+    <div style="margin-top:10px;font-size:0.9rem;color:#d81b60">I LOVE YOU</div>
+  </div>
+</div>
+
+<script>
+/* Slide control */
+let current = 1;
+function nextSlide(){
+  document.getElementById('slide'+current).classList.remove('active');
+  current++;
+  if(current>3) current = 1;
+  document.getElementById('slide'+current).classList.add('active');
+
+  if(current === 3) startFallingEmojis();
+}
+
+/* Falling emojis for slide 3 (❤️ 🌹 🎀) */
+let fallInterval = null;
+function startFallingEmojis(){
+  if(fallInterval) return;
+  const emojis = ['❤️','🌹','🎀'];
+  fallInterval = setInterval(()=>{
+    const el = document.createElement('div');
+    el.className = 'falling';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = (Math.random()*88 + 4) + 'vw';
+    el.style.fontSize = (Math.random()*18 + 22) + 'px';
+    el.style.animationDuration = (Math.random()*3 + 3.5) + 's';
+    document.body.appendChild(el);
+    setTimeout(()=> el.remove(), (parseFloat(el.style.animationDuration)*1000) + 200);
+  }, 260);
+}
+
+/* Optional: allow Enter/Space to progress */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' ') nextSlide();
+});
+</script>
+</body>
+</html>
